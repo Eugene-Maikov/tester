@@ -31,15 +31,17 @@ function insertQuestions() {
   document.querySelector('.check-panel').classList.remove('hidden');
 }
 
-
 function checkAnswers() {
   const questions = document.querySelectorAll('.question');
   let allCorrect = true;
 
-  questions.forEach((q) => {
+  questions.forEach((q, index) => {
     q.classList.remove('wrong');
     const correct = q.dataset.correct;
-    const type = q.querySelector('input').type;
+    const inputs = q.querySelectorAll('input');
+    if (!inputs.length) return;
+
+    const type = inputs[0].type;
     let selectedValues = [];
 
     if (type === 'radio') {
@@ -52,8 +54,8 @@ function checkAnswers() {
       const selected = q.querySelectorAll('input:checked');
       selected.forEach(input => selectedValues.push(input.value));
 
-      const correctSet = new Set(correct.split(','));
-      const selectedSet = new Set(selectedValues);
+      const correctSet = new Set(correct.split(',').map(String));
+      const selectedSet = new Set(selectedValues.map(String));
 
       if (
         selectedSet.size !== correctSet.size ||
@@ -74,3 +76,4 @@ function checkAnswers() {
     result.style.color = '#ff8080';
   }
 }
+
