@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Тест из вставленных вопросов</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <h2>
+    📥 Вставь HTML-вопросы и нажми "Сгенерировать"
+    <span class="tooltip-container">
+      Инструкция по использованию
+      <span class="tooltip-text">
+        1. Открой GPT<br>
+        2. Вставь туда свой конспект<br>
+        3. Скопируй шаблон запроса<br>
+        4. Отправь его в чат вместе с конспектом<br>
+        5. Скопируй полученные HTML-вопросы<br>
+        6. Вставь их в поле ниже — нажми "Сгенерировать"<br>
+      </span>
+    </span>
+  </h2>
+  <div class="format-info visually-hidden">
+    <p>Я изучаю JavaScript. Составь тест из 10 вопросов этому конспекту в
+      виде HTML блоков с кодом, чтобы я вставил их в свой файл с заранее
+      заготовленными стилями и скриптами. В тесте должны быть как
+      радиобаттоны, так и чекбоксы. Вот пример оформления блоков-вопросов.
+      Будь внимателен, вопросы должны быть корректными и не содержать пустых вариантов ответа.</p>
+    <p>Каждый вопрос — это HTML-блок с классом <code>question</code> и атрибутом <code>data-correct</code>,
+      в котором перечислены номера правильных ответов (начиная с 0).</p>
+    <p><em>Одиночный выбор:</em></p>
+    <pre>
+      &lt;div class="question" data-correct="1"&gt;
+      &lt;div class="question-title"&gt;Что делает ключевое слово let?&lt;/div&gt;
+      &lt;label&gt;&lt;input type="radio" name="q1" value="0"&gt; Создаёт постоянную переменную&lt;/label&gt;
+      &lt;label&gt;&lt;input type="radio" name="q1" value="1"&gt; Объявляет переменную с возможностью
+      изменения&lt;/label&gt;
+      &lt;label&gt;&lt;input type="radio" name="q1" value="0"&gt; Объявляет функцию&lt;/label&gt;
+      &lt;/div&gt;
+    </pre>
+    <p><em>Множественный выбор:</em></p>
+    <pre>
+      &lt;div class="question" data-correct="0,2"&gt;
+      &lt;div class="question-title"&gt;Выберите допустимые имена переменных:&lt;/div&gt;
+      &lt;label&gt;&lt;input type="checkbox" name="q2" value="0"&gt; myVar&lt;/label&gt;
+      &lt;label&gt;&lt;input type="checkbox" name="q2" value="1"&gt; 1stName&lt;/label&gt;
+      &lt;label&gt;&lt;input type="checkbox" name="q2" value="2"&gt; $count&lt;/label&gt;
+      &lt;/div&gt;
+    </pre>
+  </div>
+  <button id="copyFormatBtn" onclick="copyFormatInfo()">📋 Скопировать шаблон запроса</button>
+
+  <textarea id="inputArea" placeholder="Вставь сюда HTML-блоки вопросов..."></textarea>
+
+  <br>
+  <div class="controls">
+    <button onclick="insertQuestions()">Сгенерировать</button>
+  </div>
+
+  <div class="check-panel hidden">
+    <button id="checkBtn" onclick="checkAnswers()">Проверить ответы</button>
+  </div>
+
+  <br>
+  <form id="quizForm">
+    <div id="questionContainer"></div>
+  </form>
+
+  <div id="result"></div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
